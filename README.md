@@ -83,6 +83,13 @@ cliptimes[0] = fit01(rand(@primnum + chf("seed")), 0, length) + @Time;
 setagentcliptimes(0, @primnum, cliptimes);
 ```
 
+## Assign Layers by Row in a Grid
+```c
+int factor = int((@ptnum/chi("agents_in_row"))) % chi("num_of_props");
+string layers[] = agentlayers(0, @primnum);
+setagentcurrentlayers(0, @primnum, array(layers[factor]));
+```
+
 # Crowd Shelf Tools
 ## AutoFill Agent Names
 ```python
