@@ -1,7 +1,5 @@
 # Crowds Wrangle Scripts
-
 ## collect all agent names
-
 ```c
 string agentnames[] = uniquevals(1, "point", "agentname");
 s[]@names = agentnames;
@@ -22,34 +20,19 @@ s@agentname = s[]@names[choice];
 
 ```c
 int choice = int(rand(@ptnum * chf("shuffle_seed")) * len(s[]@names));
-string men[];
+string familyname = split(s@agentname, "_")[0];
+string pattern = familyname + "*";
+string variants[];
 foreach(string name; s[]@names) {
-    if (match("man*", name)) {
-        append(men, name);
+    if (match(pattern, name)) {
+        append(variants, name);
         }
     }
-string women[];
-foreach(string name; s[]@names) {
-    if (match("woman*", name)) {
-        append(women, name);
-        }
+if (match(pattern, s@agentname)) {
+    choice = int(rand(@ptnum * chf("shuffle_seed")) * len(variants));
+    s@agentname = variants[choice];
     }
-
-string get_familytype = 
-if (match("man*", s@agentname)) {
-    choice = int(rand(@ptnum * chf("shuffle_seed")) * len(men));
-    s@agentname = men[choice];
-    
-    }
-    
-if (match("woman*", s@agentname)) {
-    choice = int(rand(@ptnum * chf("shuffle_seed")) * len(women));
-    s@agentname = women[choice];
-    }
-
 ```
-
-
 ## switch clip or set another clip
 ```c
 
@@ -87,7 +70,6 @@ if (currentclip == "Take_001") {
         setagentclipnames(0, @primnum, array(targetclip));
         s@state = targetclip;
         }
-
     }
 ```
 
@@ -105,7 +87,6 @@ setagentcliptimes(0, @primnum, cliptimes);
 ## AutoFill Agent Names
 ```python
 # add agent names on crowd source node with custom distribution
-
 import hou
 
 node = hou.selectedNodes()[0]
@@ -144,7 +125,6 @@ for point in points:
     for primclipname in primclipnames:
         if primclipname not in clipnames:
             clipnames.append(primclipname)
-
             
 clipnames = clipnames[1:]
 count = len(clipnames)
@@ -181,26 +161,22 @@ try:
         statenode.parm("cliptype").set(1)
         statenode.moveToGoodPosition(move_unconnected=False)
 
-        
 except IndexError:
     hou.ui.displayMessage("Select DOP Network Node!")
 ```
 ## Clear Anim for All But First (Agent Manager)
 ```python
 # clear anim for all variants except first one
-
 node = hou.selectedNodes()[0]
 
 count = node.parm("num_agents")
 count = count.eval()
-
 
 for i in range(2, count+1):
     parmname = "clear_anim_files"+str(i)
     parm = node.parm(parmname)
     parm.pressButton()
 ```
-
 ## Add Anim For All (Agent Manager)
 ```python
 # button clicker tool
@@ -217,7 +193,6 @@ for i in range(count):
     parm.pressButton()
 
 ```
-
 ## Add Locomotion Joint
 ```python
 # sometimes agents have no locomotion node name in agent manager.
@@ -228,8 +203,6 @@ nodes = hou.selectedNodes()
 for node in nodes:
     node.setParms({"createlocomotionjoint": 1, "locomotionnode": "crw_locomotion"})
 ```
-
-
 # Node Preset
 ## Agent Edit - Clip Offset
 ```
