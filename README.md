@@ -1,4 +1,4 @@
-# Crowds Wrangle Scripts
+# Crowds VEX Scripts
 *A collection of wrangle scripts and python tools for crowds.*
 <p align="right"><small>by Kamaljeet Singh</small></p>
 
