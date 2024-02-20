@@ -1,4 +1,14 @@
 # Crowds Wrangle Scripts
+*A collection of wrangle scripts and python tools for crowds.*
+<p align="right"><small>by Kamaljeet Singh</small></p>
+
+* [collect all agent names](#collect-all-agent-names)
+* [switch variant with another variant](#switch-variant-with-another-variant)
+* [switch variant with another variant within family](#switch-variant-with-another-variant-within-family)
+* [switch clip or set another clip](#switch-clip-or-set-another-clip)
+* [switch clip if clip is missing](#switch-clip-if-clip-is-missing)
+* [set clip offset according to current clip duration](#set-clip-offset-according-to-current-clip-duration)
+* [Assign Layers by Row in a Grid](#assign-layers-by-row-in-a-grid)
 ## collect all agent names
 ```c
 string agentnames[] = uniquevals(1, "point", "agentname");
