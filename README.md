@@ -142,7 +142,8 @@ for point in points:
     for primclipname in primclipnames:
         if primclipname not in clipnames:
             clipnames.append(primclipname)
-            
+ 
+# skip rest clip           
 clipnames = clipnames[1:]
 count = len(clipnames)
 
