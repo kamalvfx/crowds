@@ -100,6 +100,63 @@ string layers[] = agentlayers(0, @primnum);
 setagentcurrentlayers(0, @primnum, array(layers[factor]));
 ```
 
+## switch current clip with mirror clip
+```c
+string currentclip = agentclipnames(0, @primnum)[0];
+if (match(chs("source_clip"), currentclip)) {
+    //s[]@clipname = array(currentclip + "mirror");
+    string clipname[] = split(currentclip, "_");
+    string mirrorclip = clipname[0] + "_" + clipname[1] + "mirror_" + clipname[2];
+    setagentclipnames(0, @primnum, array(mirrorclip));
+    //setpointattrib(0, "P", @ptnum, chv("position_offset"), "set");
+    setpointgroup(0, "lumCallumMiror", @ptnum, 1);
+    }
+```
+
+## Add time offset to current cliptimes
+```c
+float currenttime = agentcliptimes(0, @primnum)[0];
+float offset = fit01(rand(@ptnum * chf("seed")), 0, chf("max_offset"));
+float settime[] = array(currenttime + offset);
+setagentcliptimes(0, @primnum, settime);
+```
+
+## Set heading using target geometry
+```c
+vector pos1 = point(0, "P", @ptnum);
+vector pos2 = point(1, "P", 0);
+vector dir = normalize(pos2 - pos1);
+v@heading = dir;
+@N = v@heading;        // to visualize orientation
+```
+
+## Filter Agents by Proximity
+```c
+// point filter tool 1.0
+// authored by Kamaljeet Singh
+// set Run Over parm to "Detail (only once)"
+int pair_points[];
+for (int i = 0; i < npoints(0); i++) {
+    if (find(pair_points, i) > -1) {
+        continue;
+        }
+    vector pos = point(0, "P", i);
+    string agentname = point(0, "agentname", i);
+    int near_points[] = nearpoints(0, pos, chf("max_distance"));
+    pop(near_points, 0); // get rid of self point number
+    foreach (int near_point; near_points) { 
+        string near_agentname = point(0, "agentname", near_point);
+        if (agentname == near_agentname) {
+            append(pair_points, near_point);
+            }
+        }
+    }    
+foreach (int cull_point; pair_points) {
+    setpointattrib(0, "Cd", cull_point, {1, 1, 0}, "set");
+    setpointgroup(0, "filter", cull_point, 1, "set");
+    }
+```
+
 # Crowd Shelf Tools
 ## AutoFill Agent Names
 ```python
