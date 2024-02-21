@@ -126,6 +126,7 @@ setagentcliptimes(0, @primnum, settime);
 vector pos1 = point(0, "P", @ptnum);
 vector pos2 = point(1, "P", 0);
 vector dir = normalize(pos2 - pos1);
+dir[1] = 0;
 v@heading = dir;
 @N = v@heading;        // to visualize orientation
 ```
