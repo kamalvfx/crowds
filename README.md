@@ -1,4 +1,4 @@
-# Crowds VEX Scripts
+# Crowds Tools
 *A collection of wrangle scripts and python tools for crowds.*
 <p align="right"><small>by Kamaljeet Singh</small></p>
 
@@ -9,6 +9,9 @@
 * [switch clip if clip is missing](#switch-clip-if-clip-is-missing)
 * [set clip offset according to current clip duration](#set-clip-offset-according-to-current-clip-duration)
 * [Assign Layers by Row in a Grid](#assign-layers-by-row-in-a-grid)
+
+## VEX
+
 ## collect all agent names
 ```c
 string agentnames[] = uniquevals(1, "point", "agentname");
@@ -158,7 +161,8 @@ foreach (int cull_point; pair_points) {
     }
 ```
 
-# Crowd Shelf Tools
+## PYTHON
+
 ## AutoFill Agent Names
 ```python
 # add agent names on crowd source node with custom distribution
