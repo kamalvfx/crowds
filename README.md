@@ -161,6 +161,17 @@ foreach (int cull_point; pair_points) {
     }
 ```
 
+## Scaling Joints
+```c
+int joint = agentrigfind(0, @primnum, chs("joint"));
+vector4 rot = eulertoquaternion(radians(chv("rotate")), 0);
+matrix xform = qconvert(rot);
+matrix source = agentlocaltransform(0, @primnum, joint);
+matrix dest = source + xform;
+matrix mix = slerp(source, dest, chf("bias"));
+setagentlocaltransform(0, @primnum, mix, joint);
+```
+
 ## PYTHON
 
 ## AutoFill Agent Names
