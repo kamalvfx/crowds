@@ -9,6 +9,7 @@
 * [switch clip if clip is missing](#switch-clip-if-clip-is-missing)
 * [set clip offset according to current clip duration](#set-clip-offset-according-to-current-clip-duration)
 * [Assign Layers by Row in a Grid](#assign-layers-by-row-in-a-grid)
+* [Scaling Joints](#scaling-joints)
 
 ## VEX
 
