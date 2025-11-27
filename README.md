@@ -9,7 +9,7 @@
 * [switch clip if clip is missing](#switch-clip-if-clip-is-missing)
 * [set clip offset according to current clip duration](#set-clip-offset-according-to-current-clip-duration)
 * [Assign Layers by Row in a Grid](#assign-layers-by-row-in-a-grid)
-* [Scaling Joints](#scaling-joints)
+* [Scale Joints](#scale-joints)
 
 ## VEX
 
@@ -162,7 +162,7 @@ foreach (int cull_point; pair_points) {
     }
 ```
 
-## Scaling Joints
+## Scale Joints
 ```c
 int joint = agentrigfind(0, @primnum, chs("joint"));
 vector4 rot = eulertoquaternion(radians(chv("rotate")), 0);
